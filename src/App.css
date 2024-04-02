@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Edu+TAS+Beginner:wght@400..700&display=swap');
+
+*{
+  font-family: "Edu TAS Beginner", cursive;
+}
+
+body {
+  margin: 0px;
+}
+nav {
+  text-align: center;
+  padding: 1em;
+  display: flex;
+  justify-content: space-between;
+  background-image: url(../src/assets/madera.jpeg);
+  align-items: center;
+  height: 130px;
+}
+nav ul {
+  list-style-type: none;
+  text-align: center;
+  display: flex;
+  font-size: 25px;
+  color: rgb(255, 255, 255);
+  justify-content: space-between;
+  width: 70%;
+  align-items: center;
+}
+.logo {
+  max-width: 50%;
+  height: 100%;
+}
+.carrito {
+  height: 25%;
+  filter: invert(100%);
+}
+.carrito img{
+  height: 100%;
+}
+.carrito p{
+  margin: 0px;
+}
+nav a:hover{
+  color: rgb(198, 197, 197);
+}
+nav a{
+  transition: color 1s;
+}
+.mantenimiento{
+ text-align:  center;
+ font-size: 30px;
+}
