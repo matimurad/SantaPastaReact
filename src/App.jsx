@@ -1,17 +1,28 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useState, useEffect } from 'react'
+import {BrowserRouter, Route, Routes} from 'react-router-dom'
 import './App.css'
-import CartWidget from './components/CartWidget'
 import NavBar from './components/NavBar'
 import ItemListContainer from './components/ItemListContainer'
+import fetchProducts from './assets/productos'
+import ItemDetailContainer from './components/ItemDetailContainer'
 
 function App() {
+  const [products, setProducts] = useState([])
+
+  useEffect(() => {
+    fetchProducts().then(setProducts)
+  }, [])
+
   return (
-    <>
+    <BrowserRouter>
       <NavBar/>
-      <ItemListContainer texto = "Proximamente"/>
-    </>
+
+      <Routes>
+        <Route path='/' element={<ItemListContainer products={products}/>}/>
+        <Route path='/categoria/:tipodepasta' element={<ItemListContainer products={products}/>}/>
+        <Route path='/item/:pasta' element={<ItemDetailContainer products={products}/>}/>
+      </Routes>
+    </BrowserRouter>
   )
 }
 

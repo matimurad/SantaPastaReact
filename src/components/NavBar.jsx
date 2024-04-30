@@ -1,34 +1,22 @@
+import { Link } from "react-router-dom"
 import CartWidget from "./CartWidget"
 import logo from "../assets/santa-pasta-logo.png"
 
 const NavBar = () => {
     return (<nav>
-        <img src={logo} alt="logo" className="logo"/>
+        <Link to='/'><img src={logo} alt="logo" className="logo"/></Link>
         <ul>
             <li>
-                <a>
-                    Pastas rellenas
-                </a>
+                <Link to='/categoria/rellenas'>Pastas rellenas</Link>            
             </li>
             <li>
-                <a>
-                    Pastas largas
-                </a>
+                <Link to='/categoria/cortas'>Pastas cortas</Link>            
             </li>
             <li>
-                <a>
-                    Pastas cortas
-                </a>
+                <Link to='/categoria/especiales'>Pastas especiales</Link>            
             </li>
             <li>
-                <a>
-                    Pastas especiales
-                </a>
-            </li>
-            <li>
-                <a>
-                    Pastas integrales
-                </a>
+                <Link to='/categoria/integrales'>Pastas integrales</Link>            
             </li>
         </ul>
         <CartWidget/>
