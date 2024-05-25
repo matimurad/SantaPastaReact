@@ -1,10 +1,14 @@
+import { useContext } from "react"
 import imgcarrito from "../assets/carrito.png"
+import { CartContext } from "../context/CartContext"
 
 const CartWidget = () => {
+    const num = useContext(CartContext).totalCart()
+    
     return (
-        <div className="carrito">
+        <div>
             <img src={imgcarrito} alt="carrito" />
-            <p>4</p>
+            <p>{num}</p>
         </div>
     )
 }

@@ -1,22 +1,29 @@
 import { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
 import ItemList from "./ItemList"
+import db from "../firebase/dbfirebase"
+import { collection, getDocs, query, where } from "firebase/firestore"
 
-const ItemListContainer = (props) => {
-    const [categoriaItem, setCategoriaItem] = useState(props.products)
+const ItemListContainer = () => {
+    const [items, setItems] = useState()
 
-    const categoria = useParams().tipodepasta ? useParams().tipodepasta : null
+    const categoria = useParams().tipodepasta
 
     useEffect(() => {
-        if(props.products) {
-            if (categoria) setCategoriaItem(props.products.filter(product => product.category == categoria))
-            else setCategoriaItem(props.products)
-        }
-    }, [props, categoria])
+        let ref = collection(db, 'items')
+        if (categoria) ref = query(ref, where('category', '==', categoria))
+
+        getDocs(ref).then(res => {
+            const data = res.docs.map(doc => {
+                return {id: doc.id, ...doc.data()}
+            })
+            setItems(data)
+        })
+    }, [categoria])
 
     return (
         <div className='contenido'>
-            <ItemList products={categoriaItem}/>
+            {items && <ItemList items={items}/>}
         </div>
     )
 }

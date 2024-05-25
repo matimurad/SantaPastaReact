@@ -30,6 +30,10 @@ nav a {
   text-decoration: none;
 }
 
+nav a.active {
+  color: black;
+}
+
 .logo {
   max-width: 50%;
   height: 100%;
@@ -37,6 +41,9 @@ nav a {
 .carrito {
   height: 25%;
   filter: invert(100%);
+}
+.carrito div {
+  height: 100%;
 }
 .carrito img{
   height: 100%;
@@ -116,4 +123,16 @@ nav a{
 
 .type button {
   align-self: center;
+}
+
+.cart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cart-item {
+  display: flex;
+  width: 50%;
+  justify-content: space-between;
 }

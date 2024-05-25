@@ -1,8 +1,8 @@
 import Item from './Item.jsx'
 
-const ItemList = (props) => {
+const ItemList = ({ items }) => {
     return (
-        props.products.map(product => <Item key={product.id} product={product}/>)
+        items.map(item => <Item key={item.id} item={item}/>)
     )
 }
 

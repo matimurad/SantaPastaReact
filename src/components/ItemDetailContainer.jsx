@@ -1,27 +1,22 @@
 import { useParams } from 'react-router-dom'
-import { fetchImage } from '../assets/productos'
 import { useEffect, useState } from 'react'
+import ItemDetail from './ItemDetail.jsx'
+import db from '../firebase/dbfirebase.js'
+import { doc, getDoc } from 'firebase/firestore'
 
-const ItemDetailContainer = (props) => {
-    const [image, setImage] = useState()
 
-    const pasta = parseInt(useParams().pasta)
+const ItemDetailContainer = () => {
+    const [product, setProduct] = useState()
 
-    const product = props.products.find(product => product.id == pasta)
+    const id = useParams().pasta
 
     useEffect(() => {
-        fetchImage(product.name).then(setImage)
-    }, [props])
+        getDoc(doc(db, 'items', id)).then(res => setProduct({id: res.id, ...res.data()}))
+    }, [])
 
     return (
         <div className='type'>
-            <h1>{product.name}</h1>
-            <div>
-                <img src={image} alt={product.name} />
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum voluptas in quisquam beatae voluptatem qui id voluptatibus odit accusantium similique est, corrupti dignissimos dolorem dolor eius ea deserunt ut alias.</p>
-            </div>
-            <p>${product.price}</p>
-            <button>Agregar al carrito</button>
+            {product && <ItemDetail product={product}/>}
         </div>
     )
 }

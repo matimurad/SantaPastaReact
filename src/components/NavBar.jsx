@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { Link, NavLink } from "react-router-dom"
 import CartWidget from "./CartWidget"
 import logo from "../assets/santa-pasta-logo.png"
 
@@ -7,19 +7,21 @@ const NavBar = () => {
         <Link to='/'><img src={logo} alt="logo" className="logo"/></Link>
         <ul>
             <li>
-                <Link to='/categoria/rellenas'>Pastas rellenas</Link>            
+                <NavLink to='/categoria/rellenas'>Pastas rellenas</NavLink>            
             </li>
             <li>
-                <Link to='/categoria/cortas'>Pastas cortas</Link>            
+                <NavLink to='/categoria/cortas'>Pastas cortas</NavLink>            
             </li>
             <li>
-                <Link to='/categoria/especiales'>Pastas especiales</Link>            
+                <NavLink to='/categoria/especiales'>Pastas especiales</NavLink>            
             </li>
             <li>
-                <Link to='/categoria/integrales'>Pastas integrales</Link>            
+                <NavLink to='/categoria/integrales'>Pastas integrales</NavLink>            
             </li>
         </ul>
-        <CartWidget/>
+        <Link className='carrito' to='/cart'>
+            <CartWidget/>
+        </Link>
     </nav>)
 }
 export default NavBar
