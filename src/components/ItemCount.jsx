@@ -1,10 +1,11 @@
 import { useState, useContext } from "react"
+import { Link } from "react-router-dom"
 import { CartContext } from "../context/CartContext"
 
 const ItemCount = ({ product }) => {
     const [count, setCount] = useState(1)
 
-    const context = useContext(CartContext)
+    const {cart, addToCart} = useContext(CartContext)
 
     const res = () => {
         if (count > 1) setCount(count - 1)
@@ -16,12 +17,15 @@ const ItemCount = ({ product }) => {
     
     return (
         <>
-            <div>
-                <p onClick={res}>-</p>
+            <div className="count">
+                <p className='round' onClick={res}>-</p>
                 <p>{count}</p>
-                <p onClick={sum}>+</p>
+                <p className='round' onClick={sum}>+</p>
             </div>
-            <button onClick={() => context.addToCart(product, count)}>Agregar al carrito</button>
+            {cart.some(item => item.name == product.name)
+                ? <Link to='/cart'><button>Ir al carrito</button></Link>
+                : <button onClick={() => addToCart(product, count)}>Agregar al carrito</button>
+            }
         </>
     )
 }
